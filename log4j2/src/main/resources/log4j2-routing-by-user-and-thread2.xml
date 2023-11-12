@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" packages="com.sematext.blog.logging.plugin">
+    <Properties>
+        <Property name="appVersion" value="${sys:com.app.version:-NULL_Version}"/>
+        <Property name="LOG_DIR" value="logs"/>
+    </Properties>
+
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8"
+                           pattern="%d [%-5p] ${appVersion} %-10t ${ctx:sessionId:-NULL_Session} ${ctx:userId:-NULL_User} [%c{2}] %m%n"/>
+        </Console>
+        <Routing name="UserRoutingAppender">
+            <Routes pattern="$${ctx:logMethod}">
+                <Route key="userId">
+                    <RollingFile name="Rolling-${ctx:userId}" createOnDemand="true"
+                                 filePattern="${LOG_DIR}/${ctx:userId}-%d{yyyy-M-dd-HH}.log">
+                        <PatternLayout charset="UTF-8"
+                                       pattern="%d [%-5p] ${appVersion} %-10t ${ctx:sessionId:-NULL_Session} ${ctx:userId:-NULL_User} [%c{2}] %m%n"/>
+                        <Policies>
+                            <TimeBasedTriggeringPolicy interval="1"/>
+                        </Policies>
+                    </RollingFile>
+                </Route>
+            </Routes>
+        </Routing>
+
+        <Routing name="ThreadRoutingAppender">
+            <Routes pattern="$${threadlookup:threadName}">
+                <Route>
+                    <RollingFile name="Rolling-${threadlookup:threadName}" createOnDemand="true"
+                                 filePattern="${LOG_DIR}/${threadlookup:threadName}-%d{yyyy-M-dd-HH}.log">
+                        <PatternLayout charset="UTF-8"
+                                       pattern="%d [%-5p] ${appVersion} %-10t ${ctx:sessionId:-NULL_Session} ${ctx:userId:-NULL_User} [%c{2}] %m%n"/>
+                        <Policies>
+                            <TimeBasedTriggeringPolicy interval="1"/>
+                        </Policies>
+                        <Filters>
+                            <ThreadContextMapFilter onMatch="DENY" onMismatch="ACCEPT">
+                                <KeyValuePair key="logMethod" value="userId"/>
+                            </ThreadContextMapFilter>
+                        </Filters>
+                    </RollingFile>
+                </Route>
+            </Routes>
+        </Routing>
+        <RollingFile name="ErrorAppender" createOnDemand="true"
+                     filePattern="${LOG_DIR}/exceptions-%d{yyyy-M-dd-HH}.log">
+            <PatternLayout charset="UTF-8"
+                           pattern="%d [%-5p] ${appVersion} %-10t ${ctx:sessionId:-NULL_Session} ${ctx:userId:-NULL_User} [%c{2}] %m%n"/>
+            <TimeBasedTriggeringPolicy interval="1"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="UserRoutingAppender"/>
+            <AppenderRef ref="ThreadRoutingAppender"/>
+            <AppenderRef ref="ErrorAppender" level="ERROR"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,100 @@
+status = error
+name = PropertiesConfig
+
+property.APP_LOG_ROOT = ./logs
+property.LOG_PATTERN = <[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+
+filters = threshold
+ 
+filter.threshold.type = ThresholdFilter
+filter.threshold.level = debug
+ 
+appenders = console, debug, debug2
+
+# Configure for Console appender
+appender.console.type = Console
+appender.console.name = consoleLogger
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = ${LOG_PATTERN}
+
+## Configure for debug appender
+appender.debug.type = RollingFile
+appender.debug.name = debugLogger
+appender.debug.fileName = ${APP_LOG_ROOT}/debug-log/package1.log
+appender.debug.filePattern = ${APP_LOG_ROOT}/debug-log/package1-%d{yyyy-MM-dd}-%i.log.gz
+appender.debug.layout.type = PatternLayout
+appender.debug.layout.pattern = ${LOG_PATTERN}
+
+# TimeBasedTriggeringPolicy
+appender.debug.policies.type = Policies
+appender.debug.policies.time.type = TimeBasedTriggeringPolicy
+appender.debug.policies.time.interval = 1
+appender.debug.policies.time.modulate = true
+
+# SizeBasedTriggeringPolicy
+appender.debug.policies.size.type = SizeBasedTriggeringPolicy
+appender.debug.policies.size.size = 20MB
+
+appender.debug.strategy.type = DefaultRolloverStrategy
+appender.debug.strategy.max = 20
+
+# Delete files older than 30 days
+appender.debug.strategy.delete.type = Delete
+appender.debug.strategy.delete.basePath = ${APP_LOG_ROOT}
+appender.debug.strategy.delete.maxDepth = 1
+appender.debug.strategy.delete.ifLastModified.type = IfLastModified
+appender.debug.strategy.delete.ifLastModified.age = 30d
+
+appender.debug2.type = RollingFile
+appender.debug2.name = debugLogger2
+appender.debug2.fileName = ${APP_LOG_ROOT}/debug-log/package2.log
+appender.debug2.filePattern = ${APP_LOG_ROOT}/debug-log/package2-%d{yyyy-MM-dd}-%i.log.gz
+appender.debug2.layout.type = PatternLayout
+appender.debug2.layout.pattern = ${LOG_PATTERN}
+
+appender.debug2.policies.type = Policies
+appender.debug2.policies.time.type = TimeBasedTriggeringPolicy
+appender.debug2.policies.time.interval = 1
+appender.debug2.policies.time.modulate = true
+
+# SizeBasedTriggeringPolicy
+appender.debug2.policies.size.type = SizeBasedTriggeringPolicy
+appender.debug2.policies.size.size = 20MB
+
+appender.debug2.strategy.type = DefaultRolloverStrategy
+appender.debug2.strategy.max = 20
+
+## Configure for error, trace, perf appender
+# They are as same as configuring for debug appender
+
+# List of all loggers
+loggers = console, debug, debug2
+
+# Configure logger for console
+logger.console.name = *
+logger.console.level = debug
+logger.console.additivity = false
+logger.console.appenderRefs = console
+logger.console.appenderRef.console.ref = consoleLogger
+
+# Configure logger for debug
+logger.debug.name = com.package1
+logger.debug.level = warn
+logger.debug.additivity = false
+
+# It means: logger."name_logger".appenderRef."name_appenderRef".ref = "name_appender"
+logger.debug.appenderRef.debug.ref = debugLogger
+
+logger.debug2.name = com.package2
+logger.debug2.level = warn
+logger.debug2.additivity = false
+logger.debug2.appenderRef.debug.ref = debugLogger2
+# logger.debug2.appenderRef.console.ref = consoleLogger
+
+
+
+# Configure logger for rootLogger
+# rootLogger.level = all
+rootLogger.level = info
+rootLogger.appenderRefs = root
+rootLogger.appenderRef.root.ref = consoleLogger
