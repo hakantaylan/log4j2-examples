@@ -78,14 +78,14 @@ logger.console.appenderRefs = console
 logger.console.appenderRef.console.ref = consoleLogger
 
 # Configure logger for debug
-logger.debug.name = com.package1
+logger.debug.name = com.deneme.package1
 logger.debug.level = warn
 logger.debug.additivity = false
 
 # It means: logger."name_logger".appenderRef."name_appenderRef".ref = "name_appender"
 logger.debug.appenderRef.debug.ref = debugLogger
 
-logger.debug2.name = com.package2
+logger.debug2.name = com.deneme.package2
 logger.debug2.level = warn
 logger.debug2.additivity = false
 logger.debug2.appenderRef.debug.ref = debugLogger2

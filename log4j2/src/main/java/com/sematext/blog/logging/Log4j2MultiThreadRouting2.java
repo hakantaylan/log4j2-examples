@@ -35,6 +35,14 @@ public class Log4j2MultiThreadRouting2 {
         LOGGER.error("error log with userId");
         ThreadContext.remove("logMethod");
         ThreadContext.remove("userId");
+
+        ThreadContext.put("logMethod", "userId");
+        ThreadContext.put("userId", "HTAYLAN2");
+        LOGGER.info("info log with userId");
+        LOGGER.error("error log with userId");
+        ThreadContext.remove("logMethod");
+        ThreadContext.remove("userId");
+
         ExecutorService executorService = Executors.newFixedThreadPool(5, new NameableThreadFactory("thrd"));
         for (int i = 0; i < 10; i++) {
             executorService.submit(() -> {

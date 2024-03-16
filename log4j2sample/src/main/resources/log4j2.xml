@@ -64,12 +64,12 @@
  
     <Loggers>
      
-        <Logger name="com.package1" additivity="false" level="DEBUG">
+        <Logger name="com.deneme.package1" additivity="false" level="DEBUG">
             <AppenderRef ref="package1RollFileLog" />
             <AppenderRef ref="Console" />
         </Logger>
          
-        <Logger name="com.package2" additivity="false" level="DEBUG">
+        <Logger name="com.deneme.package2" additivity="false" level="DEBUG">
             <AppenderRef ref="debugLog" />
             <AppenderRef ref="infoLog"  />
             <AppenderRef ref="errorLog" />

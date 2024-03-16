@@ -1,4 +1,4 @@
-package com.package1;
+package com.deneme.package1;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
