@@ -54,7 +54,7 @@
         <RollingFile name="ErrorAppender" createOnDemand="true"
                      filePattern="${LOG_DIR}/exceptions-%d{yyyy-M-dd-HH}.log">
             <PatternLayout charset="UTF-8"
-                           pattern="%d [%-5p] ${appVersion} %-10t ${ctx:sessionId:-NULL_Session} ${ctx:userId:-NULL_User} [%c{2}] %m%n"/>
+                           pattern="%d [%-5p] ${appVersion} %-10t ${ctx:sessionId:-NULL_Session} ${ctx:userId:-NULL_User} [%c{2}] %m%n%ex%n"/>
             <TimeBasedTriggeringPolicy interval="1"/>
         </RollingFile>
     </Appenders>
