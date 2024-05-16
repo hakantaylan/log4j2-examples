@@ -1,23 +1,33 @@
 package com.sematext.blog.logging.fqcnexample;
 
+import com.sematext.blog.logging.fqcnexample.deneme.Deneme;
+import com.sematext.blog.logging.fqcnexample.logger.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Main {
 
     public static void main(String[] args) {
-        LoggerWrapper.info("1xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.info("2xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.info("3xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.info("4xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("5xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("6xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("7xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("8xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("9xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("10xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("11xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("12xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("13xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.error("14xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
-        LoggerWrapper.info("Bu son");
-        LoggerWrapper.error("Bu son");
+        Logger logger = LoggerFactory.getLogger();
+//        Logger logger = LogManager.getLogger();
+        logger.info("1xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.info("2xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.info("3xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.info("4xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("5xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("6xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("7xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("8xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("9xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("10xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("11xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("12xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("13xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.error("14xzxxxxxxsfgfgdfdggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggghhgh");
+        logger.info("Bu son");
+        logger.error("Bu son");
+
+        Deneme deneme = new Deneme();
+        deneme.deneme();
     }
 }

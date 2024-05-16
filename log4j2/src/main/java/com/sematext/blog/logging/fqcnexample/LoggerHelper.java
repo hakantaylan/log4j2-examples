@@ -1,3 +1,4 @@
+/*
 package com.sematext.blog.logging.fqcnexample;
 
 import com.sematext.blog.logging.Log4j2SizeExample;
@@ -22,7 +23,7 @@ public class LoggerHelper {
     }
 
 
-    private static final Logger LOGGER = ExtLogger.create();
+    private static final Logger LOGGER = ExtLogger.create(LoggerHelper.class);
 
     public static void info(String message) {
         LOGGER.info(message);
@@ -40,3 +41,4 @@ public class LoggerHelper {
         LOGGER.error(message, obj);
     }
 }
+*/

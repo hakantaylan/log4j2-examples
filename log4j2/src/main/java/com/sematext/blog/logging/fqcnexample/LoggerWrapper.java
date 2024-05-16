@@ -1,3 +1,4 @@
+/*
 package com.sematext.blog.logging.fqcnexample;
 
 public class LoggerWrapper {
@@ -18,3 +19,4 @@ public class LoggerWrapper {
         LoggerHelper.error(message, obj);
     }
 }
+*/
